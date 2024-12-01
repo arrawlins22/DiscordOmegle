@@ -43,6 +43,7 @@ public class MessageEventListener extends ListenerAdapter {
             event.getMessage().delete().queue();
             if(event.getMessage().getContentRaw().equalsIgnoreCase("accept") && !event.getMember().getRoles().contains(event.getGuild().getRoleById(playerRoleID))) {
                 event.getGuild().addRoleToMember(event.getMember(), event.getGuild().getRoleById(playerRoleID)).queue();
+                event.getGuild().getTextChannelById("1088949028118593576").sendMessage(event.getMessage().getMember() + " Accepted The Rules (Maybe Isn't A Bot)");
             }
         }
         //NO CHANNEL WITH THIS NAME?
