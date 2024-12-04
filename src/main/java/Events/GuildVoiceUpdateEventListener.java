@@ -38,7 +38,7 @@ public class GuildVoiceUpdateEventListener extends ListenerAdapter {
                 }
                 return;
             }
-            if( (event instanceof GuildVoiceMoveEvent || event instanceof GuildVoiceJoinEvent) && event.getChannelJoined().getId().equals("1087506159482708022")) {
+            if( (event instanceof GuildVoiceMoveEvent || event instanceof GuildVoiceJoinEvent) && event.getChannelJoined().getId().equals("1313760241028169779")) {
                 cupidShuffler.addMember(event.getMember());
                 if(cupidShuffler.getQueueSize() == 2) {
                     scheduledExecutorService.schedule(new runQueue(cupidShuffler, scheduledExecutorService), 5, TimeUnit.SECONDS);
@@ -51,7 +51,7 @@ public class GuildVoiceUpdateEventListener extends ListenerAdapter {
         if(event.getChannelLeft() == null) {
             return;
         }
-        if(event.getChannelLeft().getName().contains("Waiting List")) {
+        if(event.getChannelLeft().getId().equals("1313760241028169779")) {
             cupidShuffler.removeMember(event.getMember());
         }
         if(!event.getChannelLeft().getName().contains(" vs ")) {
@@ -63,7 +63,7 @@ public class GuildVoiceUpdateEventListener extends ListenerAdapter {
         }
         if(event.getChannelLeft().getMembers().size() == 1) {
             cupidShuffler.addMember(event.getChannelLeft().getMembers().get(0));
-            event.getGuild().moveVoiceMember(event.getChannelLeft().getMembers().get(0), event.getGuild().getVoiceChannelById("1087506159482708022")).queue();
+            event.getGuild().moveVoiceMember(event.getChannelLeft().getMembers().get(0), event.getGuild().getVoiceChannelById("1313760241028169779")).queue();
         }
 
     }

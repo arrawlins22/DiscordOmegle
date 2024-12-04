@@ -18,10 +18,12 @@ public class MessageEventListener extends ListenerAdapter {
     private final String playerRoleID = "1088944530394468352";
 
     ArrayList<Member> camReady = new ArrayList<Member>();
+    String DuganID = "1221391062204026903";
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         super.onMessageReceived(event);
+
 
         if((event.getChannel().equals(event.getGuild().getChannelById(TextChannel.class,"1092285263960612916")))){
 
@@ -37,13 +39,13 @@ public class MessageEventListener extends ListenerAdapter {
         }
 
         if((event.getChannel().equals(event.getGuild().getChannelById(TextChannel.class, rulesChannelID)))){
-            if(event.getMember().getEffectiveName().equals("Internet Douchebag")) {
+            if(event.getMember().getId().equals(DuganID)) {
                 return;
             }
             event.getMessage().delete().queue();
             if(event.getMessage().getContentRaw().equalsIgnoreCase("accept") && !event.getMember().getRoles().contains(event.getGuild().getRoleById(playerRoleID))) {
                 event.getGuild().addRoleToMember(event.getMember(), event.getGuild().getRoleById(playerRoleID)).queue();
-                event.getGuild().getTextChannelById("1088949028118593576").sendMessage(event.getMessage().getMember() + " Accepted The Rules (Maybe Isn't A Bot)");
+                event.getGuild().getTextChannelById("1088949028118593576").sendMessage(event.getMessage().getMember() + " Accepted The Rules (Maybe Isn't A Bot)").queue();
             }
         }
         //NO CHANNEL WITH THIS NAME?
